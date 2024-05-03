@@ -6,6 +6,8 @@
 #include "Point.hpp"
 #include "PNGImage.hpp"
 
+using namespace std;
+
 namespace svg
 {
     class SVGElement
@@ -70,10 +72,18 @@ namespace svg
         Point end;
     };
 
+    class Polygon : public SVGElement
+    {
+    public:
+        Polygon(const Color &fill, const vector<Point> &points);
+        void draw(PNGImage &img) const override;
 
-    //TODO: polygon
+    private:
+        Color fill;
+        vector<Point> points;
+    };
 
-    //TODO: rect
+
 
 }
 #endif

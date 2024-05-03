@@ -54,10 +54,15 @@ namespace svg
         img.draw_line(start, end, stroke);
     }
 
+    // Polygon
+    Polygon::Polygon(const Color &fill, const vector<Point> &points)
+            : fill(fill), points(points)
+    {
+    }
+    void Polygon::draw(PNGImage &img) const
+    {
+        img.draw_polygon(points, fill);
+    }
 
 
-    //TODO: polygon
-
-
-    //TODO: rect
 }

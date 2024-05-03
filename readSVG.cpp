@@ -51,7 +51,7 @@ namespace svg
                 svg_elements.push_back(new Ellipse(parse_color(fill_color), {static_cast<int>(cx), static_cast<int>(cy)}, {static_cast<int>(rx), static_cast<int>(ry)}));
             }
 
-                // Check if the element is a polyline
+            // Check if the element is a polyline
             else if (strcmp(child->Name(), "polyline") == 0)
             {
                 // Read polyline attributes
@@ -76,7 +76,7 @@ namespace svg
                 svg_elements.push_back(new Polyline(parse_color(stroke_color), points));
             }
 
-                // Check if the element is a line
+            // Check if the element is a line
             else if (strcmp(child->Name(), "line") == 0)
             {
                 // Read line attributes
@@ -89,10 +89,30 @@ namespace svg
                 svg_elements.push_back(new Line(parse_color(stroke_color), {static_cast<int>(x1), static_cast<int>(y1)}, {static_cast<int>(x2), static_cast<int>(y2)}));
             }
 
-            //TODO: polygon
-
-            //TODO: rect
-
+            // Check if the element is a polygon
+            else if (strcmp(child->Name(), "polygon") == 0)
+            {
+                // Read polygon attributes
+                const char *points_str = child->Attribute("points");
+                const char *fill_color = child->Attribute("fill");
+                // Parse points string
+                vector<Point> points;
+                stringstream ss(points_str);
+                string point;
+                while (getline(ss, point, ' '))
+                {
+                    // Split each point into x and y coordinates
+                    stringstream ss_point(point);
+                    string x_str, y_str;
+                    getline(ss_point, x_str, ',');
+                    getline(ss_point, y_str, ',');
+                    int x = stoi(x_str);
+                    int y = stoi(y_str);
+                    points.push_back({x, y});
+                }
+                // Create Polygon object and add to vector
+                svg_elements.push_back(new Polygon(parse_color(fill_color), points));
+            }
 
 
             // Move to next child element
