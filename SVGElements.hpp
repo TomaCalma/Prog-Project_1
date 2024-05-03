@@ -45,5 +45,24 @@ namespace svg
         Circle(const Color &fill, const Point &center, int radius);
         void draw(PNGImage &img) const override;
     };
+
+
+    class Polyline : public SVGElement
+    {
+    public:
+        Polyline(const Color &stroke, const std::vector<Point> &points);
+        void draw(PNGImage &img) const override;
+
+    protected:
+        Color stroke;
+        std::vector<Point> points;
+    };
+
+    //TODO: line
+
+    //TODO: polygon
+
+    //TODO: rect
+
 }
 #endif
