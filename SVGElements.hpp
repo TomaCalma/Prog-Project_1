@@ -58,7 +58,18 @@ namespace svg
         std::vector<Point> points;
     };
 
-    //TODO: line
+    class Line : public SVGElement
+    {
+    public:
+        Line(const Color &stroke, const Point &start, const Point &end);
+        void draw(PNGImage &img) const override;
+
+    protected:
+        Color stroke;
+        Point start;
+        Point end;
+    };
+
 
     //TODO: polygon
 

@@ -76,7 +76,18 @@ namespace svg
                 svg_elements.push_back(new Polyline(parse_color(stroke_color), points));
             }
 
-            //TODO: line
+                // Check if the element is a line
+            else if (strcmp(child->Name(), "line") == 0)
+            {
+                // Read line attributes
+                float x1 = child->FloatAttribute("x1");
+                float y1 = child->FloatAttribute("y1");
+                float x2 = child->FloatAttribute("x2");
+                float y2 = child->FloatAttribute("y2");
+                const char *stroke_color = child->Attribute("stroke");
+                // Create Line object and add to vector
+                svg_elements.push_back(new Line(parse_color(stroke_color), {static_cast<int>(x1), static_cast<int>(y1)}, {static_cast<int>(x2), static_cast<int>(y2)}));
+            }
 
             //TODO: polygon
 

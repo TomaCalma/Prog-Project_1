@@ -43,7 +43,17 @@ namespace svg
     }
 
 
-    //TODO: line
+    //line
+    Line::Line(const Color &stroke, const Point &start, const Point &end)
+            : stroke(stroke), start(start), end(end)
+    {
+    }
+
+    void Line::draw(PNGImage &img) const
+    {
+        img.draw_line(start, end, stroke);
+    }
+
 
 
     //TODO: polygon
