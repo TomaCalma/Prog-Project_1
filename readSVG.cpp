@@ -114,6 +114,18 @@ namespace svg
                 svg_elements.push_back(new Polygon(parse_color(fill_color), points));
             }
 
+            else if (strcmp(child->Name(), "rect") == 0)
+            {
+                // Read rectangle attributes
+                float x = child->FloatAttribute("x");
+                float y = child->FloatAttribute("y");
+                float width = child->FloatAttribute("width");
+                float height = child->FloatAttribute("height");
+                const char *fill_color = child->Attribute("fill");
+                // Create Rectangle object and add to vector
+                svg_elements.push_back(new Rect(parse_color(fill_color), {static_cast<int>(x), static_cast<int>(y)}, static_cast<int>(width), static_cast<int>(height)));
+            }
+
 
             // Move to next child element
             child = child->NextSiblingElement();

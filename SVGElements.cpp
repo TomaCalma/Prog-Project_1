@@ -64,5 +64,10 @@ namespace svg
         img.draw_polygon(points, fill);
     }
 
+    Rect::Rect(const Color &fill, const Point &upper_left, int width, int height)
+            : Polygon(fill, {upper_left, {upper_left.x + width, upper_left.y}, {upper_left.x + width, upper_left.y + height}, {upper_left.x, upper_left.y + height}})
+    {
+    }
+
 
 }
