@@ -1,10 +1,4 @@
 #include "SVGElements.hpp"
-#include <cmath>
-
-#ifndef M_PI
-#define M_PI acos(-1.0)
-#endif
-
 
 namespace svg
 {
@@ -33,7 +27,6 @@ namespace svg
     {
         img.draw_ellipse(center, radius, fill);
     }
-
 
     // Polyline
     Polyline::Polyline(const Color &stroke, const std::vector<Point> &points)
@@ -69,11 +62,6 @@ namespace svg
     void Polygon::draw(PNGImage &img) const
     {
         img.draw_polygon(points, fill);
-    }
-
-    Rect::Rect(const Color &fill, const Point &upper_left, int width, int height)
-            : Polygon(fill, {upper_left, {upper_left.x + width, upper_left.y}, {upper_left.x + width, upper_left.y + height}, {upper_left.x, upper_left.y + height}})
-    {
     }
 
 

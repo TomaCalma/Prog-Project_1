@@ -4,7 +4,6 @@
 #include <cstring>
 #include <sstream>
 
-
 using namespace std;
 using namespace tinyxml2;
 
@@ -95,6 +94,10 @@ namespace svg
                 // Read polygon attributes
                 const char *points_str = child->Attribute("points");
                 const char *fill_color = child->Attribute("fill");
+                const char *id_attr = child->Attribute("id");
+                const char *transform_attr = child->Attribute("transform");
+                const char *transform_origin_attr = child->Attribute("transform-origin");
+
                 // Parse points string
                 vector<Point> points;
                 stringstream ss(points_str);
@@ -110,26 +113,20 @@ namespace svg
                     int y = stoi(y_str);
                     points.push_back({x, y});
                 }
+
                 // Create Polygon object and add to vector
-                svg_elements.push_back(new Polygon(parse_color(fill_color), points));
+                Polygon *polygon = new Polygon(parse_color(fill_color), points);
+                if (id_attr)
+                    polygon->id = id_attr;
+                if (transform_attr)
+                    polygon->transform = transform_attr;
+                if (transform_origin_attr)
+                    polygon->transform_origin = transform_origin_attr;
+                svg_elements.push_back(polygon);
             }
-
-            else if (strcmp(child->Name(), "rect") == 0)
-            {
-                // Read rectangle attributes
-                float x = child->FloatAttribute("x");
-                float y = child->FloatAttribute("y");
-                float width = child->FloatAttribute("width");
-                float height = child->FloatAttribute("height");
-                const char *fill_color = child->Attribute("fill");
-                // Create Rectangle object and add to vector
-                svg_elements.push_back(new Rect(parse_color(fill_color), {static_cast<int>(x), static_cast<int>(y)}, static_cast<int>(width), static_cast<int>(height)));
-            }
-
 
             // Move to next child element
             child = child->NextSiblingElement();
         }
     }
 }
-
