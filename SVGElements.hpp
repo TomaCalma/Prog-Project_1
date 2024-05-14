@@ -17,6 +17,19 @@ namespace svg
         SVGElement();
         virtual ~SVGElement();
         virtual void draw(PNGImage &img) const = 0;
+
+        // Adicione o atributo ID
+        std::string id;
+        
+        // Adicione o atributo transform
+        std::string transform;
+        
+        // Adicione o atributo transform-origin
+        std::string transform_origin;
+
+        virtual void applyTransform(PNGImage &img) const;
+
+        virtual void rotate(int angle);
     };
 
     // Declaration of namespace functions
@@ -28,7 +41,7 @@ namespace svg
                  std::vector<SVGElement *> &svg_elements);
     void convert(const std::string &svg_file,
                  const std::string &png_file);
-
+    
     class Ellipse : public SVGElement
     {
     public:
@@ -46,6 +59,8 @@ namespace svg
     public:
         Circle(const Color &fill, const Point &center, int radius);
         void draw(PNGImage &img) const override;
+
+       
     };
 
 
@@ -73,7 +88,7 @@ namespace svg
     };
 
     class Polygon : public SVGElement
-    {
+    {   
     public:
         Polygon(const Color &fill, const vector<Point> &points);
         void draw(PNGImage &img) const override;

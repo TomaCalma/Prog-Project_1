@@ -1,4 +1,10 @@
 #include "SVGElements.hpp"
+#include <cmath>
+
+#ifndef M_PI
+#define M_PI acos(-1.0)
+#endif
+
 
 namespace svg
 {
@@ -27,6 +33,7 @@ namespace svg
     {
         img.draw_ellipse(center, radius, fill);
     }
+
 
     // Polyline
     Polyline::Polyline(const Color &stroke, const std::vector<Point> &points)
