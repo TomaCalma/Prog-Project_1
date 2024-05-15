@@ -58,17 +58,11 @@ namespace svg
     }
 
     //Rectangle
-  /*  Rect::Rect(const Color &fill, const Point &upper_left, int width, int height)
-           : Polygon(fill, {upper_left, {upper_left.x + width, upper_left.y},
-            {upper_left.x + width, upper_left.y + height},
-            {upper_left.x, upper_left.y + height}})
-    {
-    }*/
-
     Rect::Rect(const Color &fill, const Point &upper_left, int width, int height)
             : Polygon(fill, {upper_left, {upper_left.x + width - 1, upper_left.y},
             {upper_left.x + width - 1, upper_left.y + height - 1},
             {upper_left.x, upper_left.y + height - 1}})
     {
     }
+
 }
