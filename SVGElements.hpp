@@ -14,6 +14,9 @@ namespace svg
     public:
         SVGElement();
         virtual ~SVGElement();
+        virtual void translate(const Point &t) {}
+        virtual void rotate(const Point &origin, int degrees) {}
+        virtual void scale(const Point &origin, int v) {}
         virtual void draw(PNGImage &img) const = 0;
     };
     // Declaration of namespace functions
@@ -39,15 +42,31 @@ namespace svg
     public:
         Circle(const Color &fill, const Point &center, int radius);
         void draw(PNGImage &img) const override;
+
+        void translate(const Point &t) override {
+            center = center.translate(t);
+        }
+
+        void rotate(const Point &origin, int degrees) override {
+            center = center.rotate(origin, degrees);
+        }
+
+        void scale(const Point &origin, int v) override {
+            center = center.scale(origin, v);
+            radius = { radius.x * v, radius.y * v }; // Multiplica os componentes do raio
+        }
+
+
     };
+
     class Polyline : public SVGElement
     {
     public:
-        Polyline(const Color &stroke, const std::vector<Point> &points);
+        Polyline(const Color &stroke, const vector<Point> &points);
         void draw(PNGImage &img) const override;
     protected:
         Color stroke;
-        std::vector<Point> points;
+        vector<Point> points;
     };
     class Line : public SVGElement
     {
