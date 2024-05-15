@@ -3,11 +3,8 @@
 #include "external/tinyxml2/tinyxml2.h"
 #include <cstring>
 #include <sstream>
-
-
 using namespace std;
 using namespace tinyxml2;
-
 namespace svg
 {
     void readSVG(const string& svg_file, Point& dimensions, vector<SVGElement *>& svg_elements)
@@ -19,10 +16,8 @@ namespace svg
             throw runtime_error("Unable to load " + svg_file);
         }
         XMLElement *xml_elem = doc.RootElement();
-
         dimensions.x = xml_elem->IntAttribute("width");
         dimensions.y = xml_elem->IntAttribute("height");
-
         // Loop through each child element of the root
         XMLElement *child = xml_elem->FirstChildElement();
         while (child != nullptr)
@@ -50,7 +45,6 @@ namespace svg
                 // Create Ellipse object and add to vector
                 svg_elements.push_back(new Ellipse(parse_color(fill_color), {static_cast<int>(cx), static_cast<int>(cy)}, {static_cast<int>(rx), static_cast<int>(ry)}));
             }
-
             // Check if the element is a polyline
             else if (strcmp(child->Name(), "polyline") == 0)
             {
@@ -75,7 +69,6 @@ namespace svg
                 // Create Polyline object and add to vector
                 svg_elements.push_back(new Polyline(parse_color(stroke_color), points));
             }
-
             // Check if the element is a line
             else if (strcmp(child->Name(), "line") == 0)
             {
@@ -88,6 +81,10 @@ namespace svg
                 // Create Line object and add to vector
                 svg_elements.push_back(new Line(parse_color(stroke_color), {static_cast<int>(x1), static_cast<int>(y1)}, {static_cast<int>(x2), static_cast<int>(y2)}));
             }
+
+            //TODO: polygon
+
+            //TODO: rect
 
             // Check if the element is a polygon
             else if (strcmp(child->Name(), "polygon") == 0)
@@ -114,22 +111,9 @@ namespace svg
                 svg_elements.push_back(new Polygon(parse_color(fill_color), points));
             }
 
-            else if (strcmp(child->Name(), "rect") == 0)
-            {
-                // Read rectangle attributes
-                float x = child->FloatAttribute("x");
-                float y = child->FloatAttribute("y");
-                float width = child->FloatAttribute("width");
-                float height = child->FloatAttribute("height");
-                const char *fill_color = child->Attribute("fill");
-                // Create Rectangle object and add to vector
-                svg_elements.push_back(new Rect(parse_color(fill_color), {static_cast<int>(x), static_cast<int>(y)}, static_cast<int>(width), static_cast<int>(height)));
-            }
-
 
             // Move to next child element
             child = child->NextSiblingElement();
         }
     }
 }
-

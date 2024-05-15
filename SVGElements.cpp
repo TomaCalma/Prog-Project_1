@@ -1,17 +1,9 @@
 #include "SVGElements.hpp"
-#include <cmath>
-
-#ifndef M_PI
-#define M_PI acos(-1.0)
-#endif
-
-
 namespace svg
 {
     // These must be defined!
     SVGElement::SVGElement() {}
     SVGElement::~SVGElement() {}
-
     // Ellipse (initial code provided)
     Ellipse::Ellipse(const Color &fill,
                      const Point &center,
@@ -23,7 +15,6 @@ namespace svg
     {
         img.draw_ellipse(center, radius, fill);
     }
-
     // Circle
     Circle::Circle(const Color &fill, const Point &center, int radius)
             : Ellipse(fill, center, {radius, radius})
@@ -33,8 +24,6 @@ namespace svg
     {
         img.draw_ellipse(center, radius, fill);
     }
-
-
     // Polyline
     Polyline::Polyline(const Color &stroke, const std::vector<Point> &points)
             : stroke(stroke), points(points)
@@ -48,14 +37,11 @@ namespace svg
             img.draw_line(points[i], points[i + 1], stroke);
         }
     }
-
-
     //line
     Line::Line(const Color &stroke, const Point &start, const Point &end)
             : stroke(stroke), start(start), end(end)
     {
     }
-
     void Line::draw(PNGImage &img) const
     {
         img.draw_line(start, end, stroke);
@@ -70,11 +56,4 @@ namespace svg
     {
         img.draw_polygon(points, fill);
     }
-
-    Rect::Rect(const Color &fill, const Point &upper_left, int width, int height)
-            : Polygon(fill, {upper_left, {upper_left.x + width, upper_left.y}, {upper_left.x + width, upper_left.y + height}, {upper_left.x, upper_left.y + height}})
-    {
-    }
-
-
 }
