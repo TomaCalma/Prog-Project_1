@@ -71,5 +71,11 @@ namespace svg
         vector<Point> points;
     };
 
+    class Rect : public Polygon
+    {
+    public:
+        Rect(const Color &fill, const Point &upper_left, int width, int height);
+    };
+
 }
 #endif

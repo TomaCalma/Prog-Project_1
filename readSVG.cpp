@@ -82,9 +82,6 @@ namespace svg
                 svg_elements.push_back(new Line(parse_color(stroke_color), {static_cast<int>(x1), static_cast<int>(y1)}, {static_cast<int>(x2), static_cast<int>(y2)}));
             }
 
-            //TODO: polygon
-
-            //TODO: rect
 
             // Check if the element is a polygon
             else if (strcmp(child->Name(), "polygon") == 0)
@@ -111,6 +108,17 @@ namespace svg
                 svg_elements.push_back(new Polygon(parse_color(fill_color), points));
             }
 
+            else if (strcmp(child->Name(), "rect") == 0)
+            {
+                // Read rectangle attributes
+                int x = child->FloatAttribute("x");
+                int y = child->FloatAttribute("y");
+                int width = child->FloatAttribute("width");
+                int height = child->FloatAttribute("height");
+                const char *fill_color = child->Attribute("fill");
+                // Create Rectangle object and add to vector
+                svg_elements.push_back(new Rect(parse_color(fill_color), {x,y}, width, height));
+            }
 
             // Move to next child element
             child = child->NextSiblingElement();
