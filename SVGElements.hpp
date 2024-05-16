@@ -15,12 +15,12 @@ namespace svg
         SVGElement();
         virtual ~SVGElement();
         virtual void draw(PNGImage &img) const = 0;
-
         //transformações
-        //virtual void translate(const Point &t) = 0;
+        virtual void translate(const Point &t) = 0;
         //virtual void rotate(const Point &origin, int degrees) = 0;
         //virtual void scale(const Point &origin, int v) = 0;
     };
+
     // Declaration of namespace functions
     // readSVG -> implement it in readSVG.cpp
     // convert -> already given (DO NOT CHANGE) in convert.cpp
@@ -37,8 +37,7 @@ namespace svg
         Ellipse(const Color &fill, const Point &center, const Point &radius);
         void draw(PNGImage &img) const override;
 
-        //Operações de transformação
-        //void translate(const Point &t) override;
+        void translate(const Point &t) override;
         //void rotate(const Point &origin, int degrees) override;
         //void scale(const Point &origin, int v) override;
 
@@ -54,20 +53,8 @@ namespace svg
     public:
         Circle(const Color &fill, const Point &center, int radius);
         void draw(PNGImage &img) const override;
-/*
-        void translate(const Point &t) override {
-            center = center.translate(t);
-        }
 
-        void rotate(const Point &origin, int degrees) override {
-            center = center.rotate(origin, degrees);
-        }
-
-        void scale(const Point &origin, int v) override {
-            center = center.scale(origin, v);
-            radius = { radius.x * v, radius.y * v }; // Multiplica os componentes do raio
-        }*/
-
+        void translate(const Point &t) override;
     };
 
 
@@ -76,6 +63,9 @@ namespace svg
     public:
         Polyline(const Color &stroke, const vector<Point> &points);
         void draw(PNGImage &img) const override;
+
+        void translate(const Point &t) override;
+
     protected:
         Color stroke;
         vector<Point> points;
@@ -87,6 +77,9 @@ namespace svg
     public:
         Line(const Color &stroke, const Point &start, const Point &end);
         void draw(PNGImage &img) const override;
+
+        void translate(const Point &t) override;
+
     protected:
         Color stroke;
         Point start;
@@ -100,6 +93,8 @@ namespace svg
         Polygon(const Color &fill, const vector<Point> &points);
         void draw(PNGImage &img) const override;
 
+        void translate(const Point &t) override;
+
     private:
         Color fill;
         vector<Point> points;
@@ -110,6 +105,8 @@ namespace svg
     {
     public:
         Rect(const Color &fill, const Point &upper_left, int width, int height);
+
+        void translate(const Point &t) override;
     };
 
 }

@@ -4,10 +4,9 @@ namespace svg
     // These must be defined!
     SVGElement::SVGElement() {}
     SVGElement::~SVGElement() {}
+
     // Ellipse (initial code provided)
-    Ellipse::Ellipse(const Color &fill,
-                     const Point &center,
-                     const Point &radius)
+    Ellipse::Ellipse(const Color &fill, const Point &center, const Point &radius)
             : fill(fill), center(center), radius(radius)
     {
     }
@@ -16,11 +15,11 @@ namespace svg
         img.draw_ellipse(center, radius, fill);
     }
     //implementação das tranformações
-    /*
     void Ellipse::translate(const Point &t)
     {
         center = center.translate(t);
     }
+    /*
     void Ellipse::rotate(const Point &origin, int degrees)
     {
         center = center.rotate(origin, degrees);
@@ -40,8 +39,12 @@ namespace svg
     void Circle::draw(PNGImage &img) const
     {
         img.draw_ellipse(center, radius, fill);
+        //img.draw_ellipse(center, {radius.x, radius.y}, fill);
     }
-
+    void Circle::translate(const Point &t)
+    {
+        center = center.translate(t);
+    }
 
     // Polyline
     Polyline::Polyline(const Color &stroke, const std::vector<Point> &points)
@@ -56,7 +59,13 @@ namespace svg
             img.draw_line(points[i], points[i + 1], stroke);
         }
     }
-
+    void Polyline::translate(const Point &t)
+    {
+        for (auto &point : points)
+        {
+            point = point.translate(t);
+        }
+    }
 
     //line
     Line::Line(const Color &stroke, const Point &start, const Point &end)
@@ -67,7 +76,11 @@ namespace svg
     {
         img.draw_line(start, end, stroke);
     }
-
+    void Line::translate(const Point &t)
+    {
+        start = start.translate(t);
+        end = end.translate(t);
+    }
 
     // Polygon
     Polygon::Polygon(const Color &fill, const vector<Point> &points)
@@ -78,7 +91,13 @@ namespace svg
     {
         img.draw_polygon(points, fill);
     }
-
+    void Polygon::translate(const Point &t)
+    {
+        for (auto &point : points)
+        {
+            point = point.translate(t);
+        }
+    }
 
     //Rectangle
     Rect::Rect(const Color &fill, const Point &upper_left, int width, int height)
@@ -87,5 +106,16 @@ namespace svg
             {upper_left.x, upper_left.y + height - 1}})
     {
     }
+    /*
+    void Rect::translate(const Point &t)
+    {
+        for (auto &point : {upper_left, {upper_left.x + width - 1, upper_left.y},
+                            {upper_left.x + width - 1, upper_left.y + height - 1},
+                            {upper_left.x, upper_left.y + height - 1}})
+        {
+            point = point.translate(t);
+        }
+    }
+    */
 
 }
