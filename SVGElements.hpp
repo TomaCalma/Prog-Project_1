@@ -14,10 +14,12 @@ namespace svg
     public:
         SVGElement();
         virtual ~SVGElement();
-        virtual void translate(const Point &t) {}
-        virtual void rotate(const Point &origin, int degrees) {}
-        virtual void scale(const Point &origin, int v) {}
         virtual void draw(PNGImage &img) const = 0;
+
+        //transformações
+        //virtual void translate(const Point &t) = 0;
+        //virtual void rotate(const Point &origin, int degrees) = 0;
+        //virtual void scale(const Point &origin, int v) = 0;
     };
     // Declaration of namespace functions
     // readSVG -> implement it in readSVG.cpp
@@ -27,22 +29,32 @@ namespace svg
                  std::vector<SVGElement *> &svg_elements);
     void convert(const std::string &svg_file,
                  const std::string &png_file);
+
+
     class Ellipse : public SVGElement
     {
     public:
         Ellipse(const Color &fill, const Point &center, const Point &radius);
         void draw(PNGImage &img) const override;
+
+        //Operações de transformação
+        //void translate(const Point &t) override;
+        //void rotate(const Point &origin, int degrees) override;
+        //void scale(const Point &origin, int v) override;
+
     protected:
         Color fill;
         Point center;
         Point radius;
     };
+
+
     class Circle : public Ellipse
     {
     public:
         Circle(const Color &fill, const Point &center, int radius);
         void draw(PNGImage &img) const override;
-
+/*
         void translate(const Point &t) override {
             center = center.translate(t);
         }
@@ -54,10 +66,10 @@ namespace svg
         void scale(const Point &origin, int v) override {
             center = center.scale(origin, v);
             radius = { radius.x * v, radius.y * v }; // Multiplica os componentes do raio
-        }
-
+        }*/
 
     };
+
 
     class Polyline : public SVGElement
     {
@@ -68,6 +80,8 @@ namespace svg
         Color stroke;
         vector<Point> points;
     };
+
+
     class Line : public SVGElement
     {
     public:
@@ -79,6 +93,7 @@ namespace svg
         Point end;
     };
 
+
     class Polygon : public SVGElement
     {
     public:
@@ -89,6 +104,7 @@ namespace svg
         Color fill;
         vector<Point> points;
     };
+
 
     class Rect : public Polygon
     {

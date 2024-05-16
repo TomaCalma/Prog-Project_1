@@ -15,6 +15,23 @@ namespace svg
     {
         img.draw_ellipse(center, radius, fill);
     }
+    //implementação das tranformações
+    /*
+    void Ellipse::translate(const Point &t)
+    {
+        center = center.translate(t);
+    }
+    void Ellipse::rotate(const Point &origin, int degrees)
+    {
+        center = center.rotate(origin, degrees);
+    }
+    void Ellipse::scale(const Point &origin, int v)
+    {
+        center = center.scale(origin, v);
+        radius = {radius.x * v, radius.y * v};
+    }
+    */
+
     // Circle
     Circle::Circle(const Color &fill, const Point &center, int radius)
             : Ellipse(fill, center, {radius, radius})
@@ -24,6 +41,8 @@ namespace svg
     {
         img.draw_ellipse(center, radius, fill);
     }
+
+
     // Polyline
     Polyline::Polyline(const Color &stroke, const std::vector<Point> &points)
             : stroke(stroke), points(points)
@@ -37,6 +56,8 @@ namespace svg
             img.draw_line(points[i], points[i + 1], stroke);
         }
     }
+
+
     //line
     Line::Line(const Color &stroke, const Point &start, const Point &end)
             : stroke(stroke), start(start), end(end)
@@ -47,6 +68,7 @@ namespace svg
         img.draw_line(start, end, stroke);
     }
 
+
     // Polygon
     Polygon::Polygon(const Color &fill, const vector<Point> &points)
             : fill(fill), points(points)
@@ -56,6 +78,7 @@ namespace svg
     {
         img.draw_polygon(points, fill);
     }
+
 
     //Rectangle
     Rect::Rect(const Color &fill, const Point &upper_left, int width, int height)
