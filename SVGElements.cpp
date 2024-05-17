@@ -7,15 +7,6 @@
 
 namespace svg {
 
-    void SVGElement::applyTransform(PNGImage &img) const {
-        // Implementação da função aqui
-    }
-
-    // Definição da função rotate
-    void SVGElement::rotate(int angle) {
-        // Implementação da função aqui
-    }
-
 
     /**
      * @file SVGElements.hpp
@@ -144,7 +135,10 @@ namespace svg {
      *
      * Esta classe representa um retângulo SVG e é derivada da classe Polygon.
      */
-    Rect::Rect(const Color &fill, const Point &upper_left, int width, int height)
-            : Polygon(fill, {upper_left, {upper_left.x + width, upper_left.y}, {upper_left.x + width, upper_left.y + height}, {upper_left.x, upper_left.y + height}}) {}
-
+     Rect::Rect(const Color &fill, const Point &upper_left, int width, int height)
+            : Polygon(fill, {upper_left, {upper_left.x + width - 1, upper_left.y},
+            {upper_left.x + width - 1, upper_left.y + height - 1},
+            {upper_left.x, upper_left.y + height - 1}})
+    {
+    }
 } 

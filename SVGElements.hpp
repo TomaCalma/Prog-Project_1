@@ -31,6 +31,10 @@ namespace svg
          */
         virtual ~SVGElement();
 
+        virtual void translate(const Point &t) {}
+        virtual void rotate(const Point &origin, int degrees) {}
+        virtual void scale(const Point &origin, int v) {}
+
         /**
          * @brief Função virtual pura para desenhar o elemento SVG.
          *
@@ -38,28 +42,6 @@ namespace svg
          */
         virtual void draw(PNGImage &img) const = 0;
 
-        // Adiciona o atributo ID
-        std::string id;
-        
-        // Adiciona o atributo transform
-        std::string transform;
-        
-        // Adiciona o atributo transform-origin
-        std::string transform_origin;
-
-        /**
-         * @brief Aplica uma transformação ao elemento SVG.
-         *
-         * @param img A imagem PNG onde o elemento será desenhado.
-         */
-        virtual void applyTransform(PNGImage &img) const;
-
-        /**
-         * @brief Fazer rotate do elemento SVG.
-         *
-         * @param angle O ângulo de rotação.
-         */
-        virtual void rotate(int angle);
     };
 
     // Declaration of namespace functions
@@ -129,6 +111,20 @@ namespace svg
          * @param img A imagem PNG onde o círculo será desenhado.
          */
         void draw(PNGImage &img) const override;
+
+        void translate(const Point &t) override {
+            center = center.translate(t);
+        }
+
+        void rotate(const Point &origin, int degrees) override {
+            center = center.rotate(origin, degrees);
+        }
+
+        void scale(const Point &origin, int v) override {
+            center = center.scale(origin, v);
+            radius = { radius.x * v, radius.y * v }; // Multiplica os componentes do raio
+        }
+
 
     };
 
