@@ -10,6 +10,7 @@ using namespace std;
 
 namespace svg
 {
+        
     /**
      * @class SVGElement
      * @brief Classe base para elementos SVG.

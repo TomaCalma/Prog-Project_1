@@ -7,6 +7,16 @@
 
 namespace svg {
 
+    void SVGElement::applyTransform(PNGImage &img) const {
+        // Implementação da função aqui
+    }
+
+    // Definição da função rotate
+    void SVGElement::rotate(int angle) {
+        // Implementação da função aqui
+    }
+
+
     /**
      * @file SVGElements.hpp
      * @brief Define as classes para elementos SVG.
@@ -24,6 +34,8 @@ namespace svg {
      * @brief Destrutor virtual para a classe SVGElement.
      */
     SVGElement::~SVGElement() {}
+
+    
 
     // Definição da classe Ellipse
     /**
