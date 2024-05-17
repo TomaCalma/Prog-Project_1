@@ -1,0 +1,119 @@
+\hypertarget{classsvg_1_1SVGElement}{}\doxysection{svg\+::S\+V\+G\+Element Class Reference}
+\label{classsvg_1_1SVGElement}\index{svg::SVGElement@{svg::SVGElement}}
+
+
+Classe base para elementos S\+VG.  
+
+
+
+
+{\ttfamily \#include $<$S\+V\+G\+Elements.\+hpp$>$}
+
+
+
+Inheritance diagram for svg\+::S\+V\+G\+Element\+:
+% FIG 0
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classsvg_1_1SVGElement_ad7dda652e508f246e2ba4a4efde006e7}{S\+V\+G\+Element}} ()
+\begin{DoxyCompactList}\small\item\em Construtor padrão da classe \mbox{\hyperlink{classsvg_1_1SVGElement}{S\+V\+G\+Element}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classsvg_1_1SVGElement_a5d1d07a585957ac9aa49be35bf982ff4}\label{classsvg_1_1SVGElement_a5d1d07a585957ac9aa49be35bf982ff4}} 
+virtual \mbox{\hyperlink{classsvg_1_1SVGElement_a5d1d07a585957ac9aa49be35bf982ff4}{$\sim$\+S\+V\+G\+Element}} ()
+\begin{DoxyCompactList}\small\item\em Destrutor virtual para a classe \mbox{\hyperlink{classsvg_1_1SVGElement}{S\+V\+G\+Element}}. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classsvg_1_1SVGElement_a13fe0f1232eda3edc625d8d955cba722}{draw}} (P\+N\+G\+Image \&img) const =0
+\begin{DoxyCompactList}\small\item\em Função virtual pura para desenhar o elemento S\+VG. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classsvg_1_1SVGElement_a1363fa259b00fe1c1ad2e93edb382ec9}{apply\+Transform}} (P\+N\+G\+Image \&img) const
+\begin{DoxyCompactList}\small\item\em Aplica uma transformação ao elemento S\+VG. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classsvg_1_1SVGElement_a573cdfeb776a2b289270fb78f4df27d2}{rotate}} (int angle)
+\begin{DoxyCompactList}\small\item\em Fazer rotate do elemento S\+VG. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classsvg_1_1SVGElement_a4faf5ffde98f4a02f849bcaf72b76398}\label{classsvg_1_1SVGElement_a4faf5ffde98f4a02f849bcaf72b76398}} 
+std\+::string {\bfseries id}
+\item 
+\mbox{\Hypertarget{classsvg_1_1SVGElement_a19a84dd5bbb4aaa2b9b3bc4bafd222b9}\label{classsvg_1_1SVGElement_a19a84dd5bbb4aaa2b9b3bc4bafd222b9}} 
+std\+::string {\bfseries transform}
+\item 
+\mbox{\Hypertarget{classsvg_1_1SVGElement_a3f7cbd5ab6290a4b510942e5f11a8a79}\label{classsvg_1_1SVGElement_a3f7cbd5ab6290a4b510942e5f11a8a79}} 
+std\+::string {\bfseries transform\+\_\+origin}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Classe base para elementos S\+VG. 
+
+Esta classe serve como base para os elementos S\+VG. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classsvg_1_1SVGElement_ad7dda652e508f246e2ba4a4efde006e7}\label{classsvg_1_1SVGElement_ad7dda652e508f246e2ba4a4efde006e7}} 
+\index{svg::SVGElement@{svg::SVGElement}!SVGElement@{SVGElement}}
+\index{SVGElement@{SVGElement}!svg::SVGElement@{svg::SVGElement}}
+\doxysubsubsection{\texorpdfstring{SVGElement()}{SVGElement()}}
+{\footnotesize\ttfamily svg\+::\+S\+V\+G\+Element\+::\+S\+V\+G\+Element (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Construtor padrão da classe \mbox{\hyperlink{classsvg_1_1SVGElement}{S\+V\+G\+Element}}. 
+
+Classe base para elementos S\+VG.
+
+Esta classe serve como base para os elementos S\+VG. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classsvg_1_1SVGElement_a1363fa259b00fe1c1ad2e93edb382ec9}\label{classsvg_1_1SVGElement_a1363fa259b00fe1c1ad2e93edb382ec9}} 
+\index{svg::SVGElement@{svg::SVGElement}!applyTransform@{applyTransform}}
+\index{applyTransform@{applyTransform}!svg::SVGElement@{svg::SVGElement}}
+\doxysubsubsection{\texorpdfstring{applyTransform()}{applyTransform()}}
+{\footnotesize\ttfamily virtual void svg\+::\+S\+V\+G\+Element\+::apply\+Transform (\begin{DoxyParamCaption}\item[{P\+N\+G\+Image \&}]{img }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Aplica uma transformação ao elemento S\+VG. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em img} & A imagem P\+NG onde o elemento será desenhado. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classsvg_1_1SVGElement_a13fe0f1232eda3edc625d8d955cba722}\label{classsvg_1_1SVGElement_a13fe0f1232eda3edc625d8d955cba722}} 
+\index{svg::SVGElement@{svg::SVGElement}!draw@{draw}}
+\index{draw@{draw}!svg::SVGElement@{svg::SVGElement}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily virtual void svg\+::\+S\+V\+G\+Element\+::draw (\begin{DoxyParamCaption}\item[{P\+N\+G\+Image \&}]{img }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Função virtual pura para desenhar o elemento S\+VG. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em img} & A imagem P\+NG onde o elemento será desenhado. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{classsvg_1_1Polygon_a1829f7713b0f6c7785f97970e3faa7a7}{svg\+::\+Polygon}}, \mbox{\hyperlink{classsvg_1_1Line_a6282a1dcf9d2d44e042f5d29c3688add}{svg\+::\+Line}}, \mbox{\hyperlink{classsvg_1_1Polyline_a04e1203ff667ff64e361df039c29e82d}{svg\+::\+Polyline}}, \mbox{\hyperlink{classsvg_1_1Circle_a08bb63d8c705d10470f5733dd3d19f3c}{svg\+::\+Circle}}, and \mbox{\hyperlink{classsvg_1_1Ellipse_a82d5ffda820007bc12e8c8740b2e8e22}{svg\+::\+Ellipse}}.
+
+\mbox{\Hypertarget{classsvg_1_1SVGElement_a573cdfeb776a2b289270fb78f4df27d2}\label{classsvg_1_1SVGElement_a573cdfeb776a2b289270fb78f4df27d2}} 
+\index{svg::SVGElement@{svg::SVGElement}!rotate@{rotate}}
+\index{rotate@{rotate}!svg::SVGElement@{svg::SVGElement}}
+\doxysubsubsection{\texorpdfstring{rotate()}{rotate()}}
+{\footnotesize\ttfamily virtual void svg\+::\+S\+V\+G\+Element\+::rotate (\begin{DoxyParamCaption}\item[{int}]{angle }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Fazer rotate do elemento S\+VG. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em angle} & O ângulo de rotação. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{SVGElements_8hpp}{S\+V\+G\+Elements.\+hpp}}\item 
+S\+V\+G\+Elements.\+cpp\end{DoxyCompactItemize}

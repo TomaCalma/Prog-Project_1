@@ -1,0 +1,98 @@
+\hypertarget{classsvg_1_1Ellipse}{}\doxysection{svg\+::Ellipse Class Reference}
+\label{classsvg_1_1Ellipse}\index{svg::Ellipse@{svg::Ellipse}}
+
+
+Representa uma elipse S\+VG.  
+
+
+
+
+{\ttfamily \#include $<$S\+V\+G\+Elements.\+hpp$>$}
+
+
+
+Inheritance diagram for svg\+::Ellipse\+:
+% FIG 0
+
+
+Collaboration diagram for svg\+::Ellipse\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classsvg_1_1Ellipse_ae7c597e64d0a98f377bc4398cdcdeb0c}{Ellipse}} (const Color \&fill, const Point \&center, const Point \&radius)
+\begin{DoxyCompactList}\small\item\em Construtor da classe \mbox{\hyperlink{classsvg_1_1Ellipse}{Ellipse}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classsvg_1_1Ellipse_a82d5ffda820007bc12e8c8740b2e8e22}{draw}} (P\+N\+G\+Image \&img) const override
+\begin{DoxyCompactList}\small\item\em Desenha a elipse. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classsvg_1_1Ellipse_a0a74906f071cfde7f897857c104b7663}\label{classsvg_1_1Ellipse_a0a74906f071cfde7f897857c104b7663}} 
+Color {\bfseries fill}
+\item 
+\mbox{\Hypertarget{classsvg_1_1Ellipse_abddc9e1a0c27ce8cc52f7af0aca1bf85}\label{classsvg_1_1Ellipse_abddc9e1a0c27ce8cc52f7af0aca1bf85}} 
+Point {\bfseries center}
+\item 
+\mbox{\Hypertarget{classsvg_1_1Ellipse_a5a5b82bc281c196215b419ccb32ff5cd}\label{classsvg_1_1Ellipse_a5a5b82bc281c196215b419ccb32ff5cd}} 
+Point {\bfseries radius}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Representa uma elipse S\+VG. 
+
+Esta classe representa uma elipse S\+VG e é derivada da classe \mbox{\hyperlink{classsvg_1_1SVGElement}{S\+V\+G\+Element}}. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classsvg_1_1Ellipse_ae7c597e64d0a98f377bc4398cdcdeb0c}\label{classsvg_1_1Ellipse_ae7c597e64d0a98f377bc4398cdcdeb0c}} 
+\index{svg::Ellipse@{svg::Ellipse}!Ellipse@{Ellipse}}
+\index{Ellipse@{Ellipse}!svg::Ellipse@{svg::Ellipse}}
+\doxysubsubsection{\texorpdfstring{Ellipse()}{Ellipse()}}
+{\footnotesize\ttfamily svg\+::\+Ellipse\+::\+Ellipse (\begin{DoxyParamCaption}\item[{const Color \&}]{fill,  }\item[{const Point \&}]{center,  }\item[{const Point \&}]{radius }\end{DoxyParamCaption})}
+
+
+
+Construtor da classe \mbox{\hyperlink{classsvg_1_1Ellipse}{Ellipse}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fill} & A cor de preenchimento da elipse. \\
+\hline
+{\em center} & O centro da elipse. \\
+\hline
+{\em radius} & O raio da elipse. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classsvg_1_1Ellipse_a82d5ffda820007bc12e8c8740b2e8e22}\label{classsvg_1_1Ellipse_a82d5ffda820007bc12e8c8740b2e8e22}} 
+\index{svg::Ellipse@{svg::Ellipse}!draw@{draw}}
+\index{draw@{draw}!svg::Ellipse@{svg::Ellipse}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily void svg\+::\+Ellipse\+::draw (\begin{DoxyParamCaption}\item[{P\+N\+G\+Image \&}]{img }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Desenha a elipse. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em img} & A imagem P\+NG onde a elipse será desenhada. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classsvg_1_1SVGElement_a13fe0f1232eda3edc625d8d955cba722}{svg\+::\+S\+V\+G\+Element}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classsvg_1_1Circle_a08bb63d8c705d10470f5733dd3d19f3c}{svg\+::\+Circle}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{SVGElements_8hpp}{S\+V\+G\+Elements.\+hpp}}\item 
+S\+V\+G\+Elements.\+cpp\end{DoxyCompactItemize}
