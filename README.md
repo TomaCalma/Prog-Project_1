@@ -11,6 +11,7 @@ Identify all group elements (numbers and names).
 
 ## Accomplished tasks
 
-Brief summary of what you implemented.
+Implementamos para todos os elementos geométricos a leitura lógica e as suas respetivas classes.
+Adicionamos os atributos id, transform e transfor_origin no cabeçalho.
 
 
