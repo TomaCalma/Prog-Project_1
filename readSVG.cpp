@@ -7,6 +7,41 @@ using namespace std;
 using namespace tinyxml2;
 namespace svg
 {
+
+    void applyTransformation(SVGElement* child, const char* transform_attr) {
+
+        // Verifique se a string de transformação está vazia
+        if (transform_attr == nullptr || strlen(transform_attr) == 0)
+            return;
+
+        stringstream ss(transform_attr);
+        string transform;
+        while (ss >> transform) {
+            if (transform.substr(0, 9) == "translate") {
+                float tx, ty;
+                char ch;
+                ss >> ch >> tx >> ty >> ch;
+                Point translation = {static_cast<int>(tx), static_cast<int>(ty)};
+                child->translate(translation);
+            }
+            else if (transform.substr(0, 6) == "rotate")
+            {
+                float angle;
+                char ch;
+                ss >> ch >> angle >> ch;
+                child->rotate({0, 0}, static_cast<int>(angle));
+            }
+            else if (transform.substr(0, 5) == "scale")
+            {
+                float sx, sy;
+                char ch;
+                ss >> ch >> sx >> sy >> ch;
+                child->scale({0, 0}, static_cast<int>(sx));
+            }
+        }
+
+    }
+
     void readSVG(const string& svg_file, Point& dimensions, vector<SVGElement *>& svg_elements)
     {
         XMLDocument doc;
@@ -18,7 +53,8 @@ namespace svg
         XMLElement *xml_elem = doc.RootElement();
         dimensions.x = xml_elem->IntAttribute("width");
         dimensions.y = xml_elem->IntAttribute("height");
-        // Loop through each child element of the root
+        
+        // Read each child element of the root
         XMLElement *child = xml_elem->FirstChildElement();
         while (child != nullptr)
         {
@@ -28,8 +64,21 @@ namespace svg
                 float cy = child->FloatAttribute("cy");
                 float r = child->FloatAttribute("r");
                 const char *fill_color = child->Attribute("fill");
-
                 svg_elements.push_back(new Circle(parse_color(fill_color), {static_cast<int>(cx), static_cast<int>(cy)}, static_cast<int>(r)));
+
+                const char* transform_attr = child->Attribute("transform");
+                if (svg_elements.back() != nullptr && transform_attr != nullptr)
+                {
+                    applyTransformation(svg_elements.back(), transform_attr);
+                }
+/*
+                // Apply transformation
+                if (transform_attr != nullptr)
+                {
+                    applyTransformation(circle, transform_attr);
+                }
+                svg_elements.push_back(circle);
+                    */
             }
 
             else if (strcmp(child->Name(), "ellipse") == 0)
@@ -39,6 +88,7 @@ namespace svg
                 float rx = child->FloatAttribute("rx");
                 float ry = child->FloatAttribute("ry");
                 const char *fill_color = child->Attribute("fill");
+
 
                 svg_elements.push_back(new Ellipse(parse_color(fill_color), {static_cast<int>(cx), static_cast<int>(cy)}, {static_cast<int>(rx), static_cast<int>(ry)}));
             }
@@ -110,16 +160,15 @@ namespace svg
                 svg_elements.push_back(new Rect(parse_color(fill_color), {x,y}, width, height));
             }
 
-            // Check if the element has transformation attributes
+            /*
+            // child = child->NextSiblingElement();
+            // Check if the element is not null before applying transformation
             const char* transform_attr = child->Attribute("transform");
-            if (transform_attr != nullptr)
+            if (svg_elements.back() != nullptr && transform_attr != nullptr)
             {
-                // Parse and apply transformations
-                // Example: parse transform string and apply translation, rotation, scaling
-                // svg_elements.back()->translate(translation_point);
-                // svg_elements.back()->rotate(rotation_origin, rotation_degrees);
-                // svg_elements.back()->scale(scaling_origin, scaling_factor);
+                applyTransformation(svg_elements.back(), transform_attr);
             }
+            */
 
             // Move to next child element
             child = child->NextSiblingElement();
