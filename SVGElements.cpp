@@ -1,11 +1,9 @@
 #include "SVGElements.hpp"
 namespace svg
 {
-    // These must be defined!
     SVGElement::SVGElement() {}
     SVGElement::~SVGElement() {}
 
-    // Ellipse (initial code provided)
     Ellipse::Ellipse(const Color &fill, const Point &center, const Point &radius)
             : fill(fill), center(center), radius(radius)
     {
@@ -14,8 +12,7 @@ namespace svg
     {
         img.draw_ellipse(center, radius, fill);
     }
-
-    // Ellipse Transformations
+    //Ellipse Transformations
     void Ellipse::translate(const Point &t)
     {
         center = center.translate(t);
@@ -30,8 +27,7 @@ namespace svg
         radius = {radius.x * v, radius.y * v};
     }
 
-
-    // Circle
+    //Circle
     Circle::Circle(const Color &fill, const Point &center, int radius)
             : Ellipse(fill, center, {radius, radius})
     {
@@ -39,25 +35,9 @@ namespace svg
     void Circle::draw(PNGImage &img) const
     {
         img.draw_ellipse(center, radius, fill);
-        //img.draw_ellipse(center, {radius.x, radius.y}, fill);
-    }
-    //aqui por causa da definição, não deveriam ser pecisas
-    void Circle::translate(const Point &t)
-    {
-        center = center.translate(t);
     }
 
-    void Circle::rotate(const Point &origin, int degrees)
-    {
-        center = center.rotate(origin, degrees);
-    }
-    void Circle::scale(const Point &origin, int v)
-    {
-        center = center.scale(origin, v);
-        radius = {radius.x * v, radius.y * v};
-    }
-
-    // Polyline
+    //Polyline
     Polyline::Polyline(const Color &stroke, const std::vector<Point> &points)
             : stroke(stroke), points(points)
     {
@@ -69,9 +49,7 @@ namespace svg
             img.draw_line(points[i], points[i + 1], stroke);
         }
     }
-
-    // Polyline Transformations
-    /*
+    //Polyline Transformations
     void Polyline::translate(const Point &t)
     {
         for (auto &point : points)
@@ -93,26 +71,8 @@ namespace svg
             point = point.scale(origin, v);
         }
     }
-        */
 
-    void Polyline::translate(const Point &t)
-    {
-        for (size_t i = 0; i < points.size(); i++)
-            points[i] = points[i].translate(t);
-    }
-    void Polyline::rotate(const Point &origin, int degrees)
-    {
-        for (size_t i = 0; i < points.size(); i++)
-            points[i] = points[i].rotate(origin, degrees);
-    }
-    void Polyline::scale(const Point &origin, int v)
-    {
-        for (size_t i = 0; i < points.size(); i++)
-            points[i] = points[i].scale(origin, v);
-    }
-
-
-    // Line
+    //Line
     Line::Line(const Color &stroke, const Point &start, const Point &end)
             : stroke(stroke), start(start), end(end)
     {
@@ -121,7 +81,7 @@ namespace svg
     {
         img.draw_line(start, end, stroke);
     }
-    //aqui por causa da definição, não deveriam ser pecisas
+    //line transformations
     void Line::translate(const Point &t)
     {
         start = start.translate(t);
@@ -138,7 +98,7 @@ namespace svg
         end = end.scale(origin, v);
     }
 
-    // Polygon
+    //Polygon
     Polygon::Polygon(const Color &fill, const vector<Point> &points)
             : fill(fill), points(points)
     {
@@ -147,8 +107,7 @@ namespace svg
     {
         img.draw_polygon(points, fill);
     }
-
-    // Polygon Transformations
+    //Polygon Transformations
     void Polygon::translate(const Point &t)
     {
         for (auto &point : points)
@@ -178,27 +137,6 @@ namespace svg
             {upper_left.x, upper_left.y + height - 1}})
     {
     }
-    //aqui por causa da definição, não deveriam ser pecisas
-    void Rect::translate(const Point &t)
-    {
-        for (auto &point : points)
-        {
-            point = point.translate(t);
-        }
-    }
-    void Rect::rotate(const Point &origin, int degrees)
-    {
-        for (auto &point : points)
-        {
-            point = point.rotate(origin, degrees);
-        }
-    }
-    void Rect::scale(const Point &origin, int v)
-    {
-        for (auto &point : points)
-        {
-            point = point.scale(origin, v);
-        }
-    }
+
 
 }
