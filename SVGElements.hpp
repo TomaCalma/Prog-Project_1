@@ -24,6 +24,7 @@ namespace svg
     // Declaration of namespace functions
     // readSVG -> implement it in readSVG.cpp
     // convert -> already given (DO NOT CHANGE) in convert.cpp
+
     void readSVG(const std::string &svg_file,
                  Point &dimensions,
                  std::vector<SVGElement *> &svg_elements);
@@ -104,6 +105,7 @@ namespace svg
 
     private:
         Color fill;
+    protected:
         vector<Point> points;
     };
 
